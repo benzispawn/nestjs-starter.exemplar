@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  commands:
+    depcruise:
+      run: npm run depcruise
+    eslint:
+      run: npm run lint
+
+pre-push:
+  parallel: false
+  commands:
+    semgrep:
+      run: npm run semgrep
+    depcruise:
+      run: npm run depcruise

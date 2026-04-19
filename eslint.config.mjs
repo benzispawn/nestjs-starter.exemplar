@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['eslint.config.mjs'],
+    ignores: ['eslint.config.mjs', '.dependency-cruiser.js', 'dist', 'node_modules', 'coverage'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -29,7 +29,13 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-misused-promises': 'warn',
+      '@typescript-eslint/await-thenable': 'warn',
       "prettier/prettier": ["error", { endOfLine: "auto" }],
+      "no-empty": ["error", { "allowEmptyCatch": false }],
+      "no-unsafe-finally": "error",
+      "no-throw-literal": "error",
+      "require-await": "error",
     },
   },
 );

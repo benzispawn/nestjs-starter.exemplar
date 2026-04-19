@@ -1,0 +1,36 @@
+rules:
+  - id: no-repository-in-controller
+    message: Controller should not access repository directly, use service instead
+    severity: ERROR
+    languages: [typescript]
+    paths:
+      include:
+        - "/src/**/*controller.ts"
+        - "/src/**/*controllers/*.ts"
+    patterns:
+      - pattern-either:
+          - pattern: $REPO.$METHOD(...)
+          - pattern: this.$REPO.$METHOD(...)
+      - metavariable-regex:
+          metavariable: $REPO
+          regex: (?i).*repo(sitory)?$
+
+  - id: no-console-log-in-src
+    message: Avoid console.log in application code
+    severity: WARNING
+    languages: [typescript]
+    paths:
+      include:
+        - "/src/**/*.ts"
+    pattern: console.log(...)
+
+  - id: no-http-service-in-domain
+    message: Domain layer should not depend on HttpService
+    severity: ERROR
+    languages: [typescript]
+    paths:
+      include:
+        - "/src/**/domain/**/*.ts"
+    pattern-either:
+      - pattern: HttpService
+      - pattern-regex: "['\"]@nestjs/axios['\"]"
