@@ -3,6 +3,7 @@ import { HealthModule } from './modules/health/health.module';
 import { validateEnv } from './shared/infra/config/env.validation';
 import appConfig from './shared/infra/config/app.config';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
       validate: validateEnv,
     }),
     HealthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
